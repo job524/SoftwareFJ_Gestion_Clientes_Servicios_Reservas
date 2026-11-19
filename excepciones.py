@@ -1,15 +1,66 @@
+
+"""
+Modulo: excepciones.py
+Proyecto: Software FJ
+Descripcion:
+Define la jerarquia de excepciones personalizadas
+utilizadas en el sistema de gestion de clientes,
+servicios y reservas.
+"""
+
+
 class SoftwareFJError(Exception):
-    """Clase base para todas las excepciones del sistema Software FJ."""
+    """
+    Excepcion base del sistema Software FJ.
+
+    Todas las excepciones propias del proyecto
+    heredan de esta clase.
+    """
     pass
+
+
+# ============================================================
+# EXCEPCIONES RELACIONADAS CON CLIENTES
+# ============================================================
 
 class ClienteInvalidoError(SoftwareFJError):
-    """Excepción lanzada cuando los datos del cliente no son válidos."""
+    """Se genera cuando los datos de un cliente no son validos."""
     pass
 
-class ServicioNoDisponibleError(SoftwareFJError):
-    """Excepción lanzada cuando un servicio no está disponible o es incorrecto."""
+
+# ============================================================
+# EXCEPCIONES RELACIONADAS CON SERVICIOS
+# ============================================================
+
+class ServicioInvalidoError(SoftwareFJError):
+    """Se genera cuando un servicio contiene datos incorrectos."""
     pass
+
+
+class ServicioNoDisponibleError(ServicioInvalidoError):
+    """Se genera cuando se intenta utilizar un servicio inactivo."""
+    pass
+
+
+# ============================================================
+# EXCEPCIONES RELACIONADAS CON RESERVAS
+# ============================================================
 
 class ReservaError(SoftwareFJError):
-    """Excepción lanzada ante fallos en el proceso de reserva."""
+    """Excepcion general para errores durante una reserva."""
+    pass
+
+
+class ReservaCanceladaError(ReservaError):
+    """Se genera cuando se intenta procesar una reserva cancelada."""
+    pass
+
+
+class EstadoReservaInvalidoError(ReservaError):
+    """Se genera cuando una reserva tiene un estado no permitido."""
+    pass
+
+
+class CalculoCostoError(ReservaError):
+    """Se genera cuando ocurre un error al calcular el costo."""
     pass
